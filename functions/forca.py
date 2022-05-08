@@ -1,4 +1,5 @@
 from sys import _clear_type_cache
+import random
 
 
 def jogar():
@@ -6,8 +7,18 @@ def jogar():
     print("***Bem vindo ao jogo da Forca!***")
     print("*********************************")
 
-    palavra_secreta = "banana".upper()
-    palavras_acertadas = ["_","_","_","_","_","_"]
+    arquivo = open("functions/frutas.txt","r")
+    palavras = []
+    for linha in arquivo:
+        linha = linha.strip()
+        palavras.append(linha)
+    arquivo.close()
+
+    numero = random.randrange(len(palavras))
+
+    palavra_secreta = palavras[numero].upper()
+    
+    palavras_acertadas = ["_" for letra in palavra_secreta]
     enforcou = False
     acertou = False
     erro = 0
@@ -17,7 +28,7 @@ def jogar():
 
     while(not enforcou and not acertou):
 
-        chute = input("Qual é a letra? ")
+        chute = input("Qual é a letra?")
         chute = chute.strip().upper()
         
         if(chute in palavra_secreta):
