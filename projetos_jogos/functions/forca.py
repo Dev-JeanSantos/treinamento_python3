@@ -1,7 +1,6 @@
 from sys import _clear_type_cache
 import random
 
-
 def jogar():
 
     mensagem_de_abertura()
@@ -39,7 +38,7 @@ def mensagem_de_abertura():
     print("*********************************")
 
 def carrega_palavra_secreta():
-    arquivo = open("functions/frutas.txt", "r")
+    arquivo = open("projetos_jogos/functions/frutas.txt", "r")
     palavras = []
     for linha in arquivo:
         linha = linha.strip()
@@ -150,5 +149,6 @@ def desenha_forca(erros):
     print(" |            ")
     print("_|___         ")
     print()
+
 if __name__ == "__main__":
     jogar()
