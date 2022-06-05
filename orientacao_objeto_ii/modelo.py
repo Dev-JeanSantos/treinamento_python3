@@ -64,8 +64,12 @@ class Playlist:
     def listagem(self):
         return self._programas
 
-    @property
-    def tamanho(self):
+    # @property
+    # def tamanho(self):
+    #     return len(self._programas)
+
+    #metodo que gera o o tamanho de uma lista
+    def __len__(self):
         return len(self._programas)
 
 #SERIES
@@ -91,7 +95,7 @@ gameOfThrones.dar_likes()
 lista_programas = [gameOfThrones, vingadores, titanic, eduardoEMonica,tropaDeElite,breakingBad,missaDaMeiaNoite,strangerThings]
 playlist_fim_de_semana = Playlist('lista_programas', lista_programas)
 
-tamanho_lista = print(f'tamanho da lista: {len(playlist_fim_de_semana.listagem)}')
+tamanho_lista = print(f'tamanho da lista: {len(playlist_fim_de_semana)}')
 
 print(titanic in playlist_fim_de_semana)
 print(f'Ultimo programa da Playlist: {playlist_fim_de_semana[7]}')
