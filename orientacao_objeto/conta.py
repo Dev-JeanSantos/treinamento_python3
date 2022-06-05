@@ -5,7 +5,7 @@ class Conta:
         self.__titular = titular
         self.__saldo = saldo
         self.__limite = limite
-
+        
     def extrato(self):
         print("Olá {} seu saldo atual é de R${}. Obrigado por utilizar os nossos serviços. ".format(self.__titular, self.__saldo))
 
@@ -50,4 +50,8 @@ class Conta:
     def __pode_sacar(self, pedido_saque):
         disponibilidade_saque = self.__saldo + self.__limite
         return pedido_saque <= disponibilidade_saque
-    
+
+    #Gerando metodos estaticos
+    @staticmethod
+    def codigos_bancos():
+        return {'Banco do Brasil': '001', 'Bradesco': '237', 'Caixa Economica': '104', 'Itaú': '341'}
