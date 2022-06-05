@@ -42,11 +42,32 @@ class Serie(Programa):
     def __str__(self) -> str:
         return f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Temporadas: {self.temporadas} - Likes: {self._likes}'
 
-class Playlist(list):
+#Aqui utilizamos essa estrategia para herdar tudo que vem do list (Desnecessário o uso de todos os metodos do list nesse caso) 
+# class Playlist(list):
+#     def __init__(self, nome, programas):
+#         self.nome = nome
+#         super().__init__(programas)
+
+
+
+#Aqui utilizamos essa estrategia de utilizar apenas o necessario de um list (duck typing - mas performático pro caso) 
+class Playlist:
     def __init__(self, nome, programas):
         self.nome = nome
-        super().__init__(programas)
-        
+        self._programas = programas
+
+    #metodo que gera o duck typing
+    def __getitem__(self, items):
+        return self._programas[items]
+
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        return len(self._programas)
+
 #SERIES
 gameOfThrones = Serie('game of thrones', 2015, 9)
 breakingBad = Serie('breaking Bad', 2008, 5)
@@ -67,11 +88,14 @@ gameOfThrones.dar_likes()
 gameOfThrones.dar_likes()
 
 
-
 lista_programas = [gameOfThrones, vingadores, titanic, eduardoEMonica,tropaDeElite,breakingBad,missaDaMeiaNoite,strangerThings]
-fim_de_semana = Playlist('lista_programas', lista_programas)
+playlist_fim_de_semana = Playlist('lista_programas', lista_programas)
 
-tamanho_lista = print(f'tamanho da lista: {len(fim_de_semana)} ')
+tamanho_lista = print(f'tamanho da lista: {len(playlist_fim_de_semana.listagem)}')
 
-for programa in fim_de_semana:
+print(titanic in playlist_fim_de_semana)
+print(f'Ultimo programa da Playlist: {playlist_fim_de_semana[7]}')
+
+
+for programa in playlist_fim_de_semana:
     print(programa)
