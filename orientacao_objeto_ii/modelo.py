@@ -42,16 +42,36 @@ class Serie(Programa):
     def __str__(self) -> str:
         return f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Temporadas: {self.temporadas} - Likes: {self._likes}'
 
+class Playlist(list):
+    def __init__(self, nome, programas):
+        self.nome = nome
+        super().__init__(programas)
+        
+#SERIES
 gameOfThrones = Serie('game of thrones', 2015, 9)
-vingadores = Filme('vingadores - guerra infinita', 2010, 60)
+breakingBad = Serie('breaking Bad', 2008, 5)
+missaDaMeiaNoite = Serie('missa da meia noite', 2022, 1)
+strangerThings = Serie('stranger tThings', 2016, 4)
+
+#FILMES
+vingadores = Filme('vingadores - guerra infinita', 2010, 180)
+titanic = Filme('titanic', 1998, 160)
+eduardoEMonica = Filme('eduardo e monica', 2022, 150)
+tropaDeElite = Filme('tropa de elite', 2008, 200)
+
+#LIKES
 vingadores.dar_likes()
 vingadores.dar_likes()
 vingadores.dar_likes()
 gameOfThrones.dar_likes()
 gameOfThrones.dar_likes()
 
-#print(f'Nome da Série: {gameOfThrones.nome} - Ano: {gameOfThrones.ano} - Temporadas: {gameOfThrones.temporadas} - Likes: {gameOfThrones.likes} ') 
 
-lista_programas = [vingadores, gameOfThrones]
-for programa in lista_programas:
+
+lista_programas = [gameOfThrones, vingadores, titanic, eduardoEMonica,tropaDeElite,breakingBad,missaDaMeiaNoite,strangerThings]
+fim_de_semana = Playlist('lista_programas', lista_programas)
+
+tamanho_lista = print(f'tamanho da lista: {len(fim_de_semana)} ')
+
+for programa in fim_de_semana:
     print(programa)
