@@ -20,8 +20,8 @@ class Programa:
     def nome(self, novo_nome):
         self._nome = novo_nome.title()
     
-    def imprime(self):
-        print(f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Duração: {self.duracao} Minutos - Likes: {self._likes}')
+    def __str__(self) -> str:
+        return f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Duração: {self.duracao} Minutos - Likes: {self._likes}'
 
 
 
@@ -30,8 +30,8 @@ class Filme(Programa):
         super().__init__(nome, ano)
         self.duracao = duracao
 
-    def imprime(self):
-        print(f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Duração: {self.duracao} Minutos - Likes: {self._likes}')
+    def __str__(self) -> str:
+        return f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Duração: {self.duracao} Minutos - Likes: {self._likes}'
     
 
 class Serie(Programa):
@@ -39,8 +39,8 @@ class Serie(Programa):
         super().__init__(nome, ano)
         self.temporadas = temporadas
     
-    def imprime(self):
-        print(f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Temporadas: {self.temporadas} - Likes: {self._likes}')
+    def __str__(self) -> str:
+        return f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Temporadas: {self.temporadas} - Likes: {self._likes}'
 
 gameOfThrones = Serie('game of thrones', 2015, 9)
 vingadores = Filme('vingadores - guerra infinita', 2010, 60)
@@ -54,4 +54,4 @@ gameOfThrones.dar_likes()
 
 lista_programas = [vingadores, gameOfThrones]
 for programa in lista_programas:
-    programa.imprime()
+    print(programa)
