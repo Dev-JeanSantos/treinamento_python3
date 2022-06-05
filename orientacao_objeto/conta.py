@@ -15,14 +15,19 @@ class Conta:
 
     
     def saca(self, valor):
-        self.__saldo -= valor
-        print("Novo saldo R${}.".format(self.__saldo))
+       
+        if(self.__pode_sacar(valor)):
+            self.__saldo -= valor
+            print("Novo saldo R${}.".format(self.__saldo))
+        else:
+            print("O valor {} passou o limite".format(valor))
     
     def transfere(self, valor, contaDestino):
         self.sacar(valor)
         contaDestino.depositar(valor)
 
     #Getters com OO no python
+    #Gerando atributos privados
     @property
     def saldo(self):
         return self.__saldo
@@ -36,7 +41,13 @@ class Conta:
         return self.__limite
 
     #Setters com OO no python
+    #Gerando atributos privados
     @limite.setter
     def limite(self, limite):
         self.__limite = limite
+    
+    #Gerando metodos privados
+    def __pode_sacar(self, pedido_saque):
+        disponibilidade_saque = self.__saldo + self.__limite
+        return pedido_saque <= disponibilidade_saque
     
