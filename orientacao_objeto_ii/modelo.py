@@ -20,6 +20,9 @@ class Programa:
     def nome(self, novo_nome):
         self._nome = novo_nome.title()
     
+    def imprime(self):
+        print(f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Duração: {self.duracao} Minutos - Likes: {self._likes}')
+
 
 
 class Filme(Programa):
@@ -27,11 +30,17 @@ class Filme(Programa):
         super().__init__(nome, ano)
         self.duracao = duracao
 
+    def imprime(self):
+        print(f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Duração: {self.duracao} Minutos - Likes: {self._likes}')
     
+
 class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
         super().__init__(nome, ano)
         self.temporadas = temporadas
+    
+    def imprime(self):
+        print(f'Nome do Filme: {self._nome} - Ano de Lançamento: {self.ano} - Temporadas: {self.temporadas} - Likes: {self._likes}')
 
 gameOfThrones = Serie('game of thrones', 2015, 9)
 vingadores = Filme('vingadores - guerra infinita', 2010, 60)
@@ -41,7 +50,8 @@ vingadores.dar_likes()
 gameOfThrones.dar_likes()
 gameOfThrones.dar_likes()
 
-print(f'Nome do Filme: {vingadores.nome} - Ano de Lançamento: {vingadores.ano} - Duração: {vingadores.duracao} Minutos - Likes: {vingadores.likes}')
-print(f'Nome da Série: {gameOfThrones.nome} - Ano: {gameOfThrones.ano} - Temporadas: {gameOfThrones.temporadas} - Likes: {gameOfThrones.likes} ') 
+#print(f'Nome da Série: {gameOfThrones.nome} - Ano: {gameOfThrones.ano} - Temporadas: {gameOfThrones.temporadas} - Likes: {gameOfThrones.likes} ') 
 
-
+lista_programas = [vingadores, gameOfThrones]
+for programa in lista_programas:
+    programa.imprime()
