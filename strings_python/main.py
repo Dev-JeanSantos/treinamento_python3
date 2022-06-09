@@ -23,22 +23,34 @@ print(f'Utilizando o metodo find: {base2}')
 print(f'Utilizando o metodo find: {url_paramteros2}')
 
 #fatiando a string (base) dinamicamente utilizando a função find() mas o len()
-url3 = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
+#url3 = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
+url3 = " "
 
-#Separa a base do parametros
-indice_interrogacao_3 = url3.find('?')
-url_base_3 = url3[:indice_interrogacao_3]
-url_parametros_3 = url3[indice_interrogacao_3 + 1:]
-print(f'URL 3 parametros: {url_parametros_3}')
+#Sanitização da URL
+#url3 = url3.replace(" ", "") #REPLACE => SUBSTITUI CARACTERES POR OUTROS
+url3 = url3.strip() #STRIP=> RETIRA TODOS CARACTERES EM BRANCO
+#url3 = url3.lstrip() #LSTRIP=> RETIRA ESPAÇOS DO LADO ESQUERDO OU DIREITO (RSTRIP)
 
-#Busca o valor de um parametro
-parametro_busca = 'quantidade'
-indice_parametro_3 = url_parametros_3.find(parametro_busca)
-indice_valor = indice_parametro_3 + len(parametro_busca) + 1
-indice_e_comercial = url_parametros_3.find('&', indice_valor)
-if indice_e_comercial == -1:
-    valor = url_parametros_3[indice_valor:]
+print(f'URL: {url3}')
+
+#Validação da URL
+if url3 == '':
+    raise ValueError("URL está vazia")
 else:
-    valor = url_parametros_3[indice_valor:indice_e_comercial]
-print(f'O valor: {valor}')
+    #Separa a base do parametros
+    indice_interrogacao_3 = url3.find('?')
+    url_base_3 = url3[:indice_interrogacao_3]
+    url_parametros_3 = url3[indice_interrogacao_3 + 1:]
+    print(f'URL 3 parametros: {url_parametros_3}')
+
+    #Busca o valor de um parametro
+    parametro_busca = 'quantidade'
+    indice_parametro_3 = url_parametros_3.find(parametro_busca)
+    indice_valor = indice_parametro_3 + len(parametro_busca) + 1
+    indice_e_comercial = url_parametros_3.find('&', indice_valor)
+    if indice_e_comercial == -1:
+        valor = url_parametros_3[indice_valor:]
+    else:
+        valor = url_parametros_3[indice_valor:indice_e_comercial]
+    print(f'O valor: {valor}')
 
