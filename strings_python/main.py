@@ -23,23 +23,22 @@ print(f'Utilizando o metodo find: {base2}')
 print(f'Utilizando o metodo find: {url_paramteros2}')
 
 #fatiando a string (base) dinamicamente utilizando a função find() mas o len()
-url3 = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar"
+url3 = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
 
-parametro_inicio = 'moedaDestino'
-indice_de_inicio_fateamento = url3.find(parametro_inicio)
-print(indice_de_inicio_fateamento)
-print(len(parametro_inicio))
+#Separa a base do parametros
+indice_interrogacao_3 = url3.find('?')
+url_base_3 = url3[:indice_interrogacao_3]
+url_parametros_3 = url3[indice_interrogacao_3 + 1:]
+print(f'URL 3 parametros: {url_parametros_3}')
 
-indices_do_valor_buscado = (indice_de_fateamento + len(parametro_inicio) + 1)
-print(indices_do_valor_buscado)
-
-
-indice_e_comercial = url3.find('&', indices_do_valor_buscado)
-print(indice_e_comercial)
-
+#Busca o valor de um parametro
+parametro_busca = 'quantidade'
+indice_parametro_3 = url_parametros_3.find(parametro_busca)
+indice_valor = indice_parametro_3 + len(parametro_busca) + 1
+indice_e_comercial = url_parametros_3.find('&', indice_valor)
 if indice_e_comercial == -1:
-    valor_buscado = url3[indices_do_valor_buscado:]
- 
-    # else:
-    #  valor_buscado = url3[indice_do_valor_buscado:indice_e_comercial]
-#print(f'Utilizando o metodo find() + len() Valor Buscado: {valor_buscado}')
+    valor = url_parametros_3[indice_valor:]
+else:
+    valor = url_parametros_3[indice_valor:indice_e_comercial]
+print(f'O valor: {valor}')
+
