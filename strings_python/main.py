@@ -1,3 +1,6 @@
+from gettext import find
+
+
 url = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
 
 
@@ -20,10 +23,23 @@ print(f'Utilizando o metodo find: {base2}')
 print(f'Utilizando o metodo find: {url_paramteros2}')
 
 #fatiando a string (base) dinamicamente utilizando a função find() mas o len()
-url3 = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
+url3 = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar"
 
-parametro_inicio = 'quantidade'
-indice_de_fateamento = url3.find(parametro_inicio)
-indice_do_valor_buscado = indice_de_fateamento + len(parametro_inicio) + 1
-valor_buscado = url3[indice_do_valor_buscado:]
-print(f'Utilizando o metodo find() + len() Valor Buscado: {valor_buscado}')
+parametro_inicio = 'moedaDestino'
+indice_de_inicio_fateamento = url3.find(parametro_inicio)
+print(indice_de_inicio_fateamento)
+print(len(parametro_inicio))
+
+indices_do_valor_buscado = (indice_de_fateamento + len(parametro_inicio) + 1)
+print(indices_do_valor_buscado)
+
+
+indice_e_comercial = url3.find('&', indices_do_valor_buscado)
+print(indice_e_comercial)
+
+if indice_e_comercial == -1:
+    valor_buscado = url3[indices_do_valor_buscado:]
+ 
+    # else:
+    #  valor_buscado = url3[indice_do_valor_buscado:indice_e_comercial]
+#print(f'Utilizando o metodo find() + len() Valor Buscado: {valor_buscado}')
